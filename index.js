@@ -4,7 +4,11 @@ import unified from 'unified';
 import PosTagger from 'wink-pos-tagger';
 import WordNet from 'wordnet';
 
+// TODO: replace with more efficient solution
+import wordFrequency from './data/word-frequency.js';
+
 const wordnet = new WordNet();
+// TODO: use list of english words instead of wordnet
 function isDictionaryWord(word) {
   return new Promise((resolve) => {
     wordnet.lookup(word, function (err, results) {
@@ -246,7 +250,8 @@ async function tagText(text) {
 
   result.tokens = tokens;
 
-  // Add frequency in text
+  // Add frequency data
+  // 1) Count frequency in text
   const frequency = {};
   result.tokens.forEach((token) => {
     const value = token.lemma || token.normal;
@@ -261,11 +266,12 @@ async function tagText(text) {
     if (frequency[value] > 1) {
       token.frequency = frequency[value];
     }
+
+    // 2) Get general word frequency
+    if (value in wordFrequency) {
+      token.rank = wordFrequency[value];
+    }
   });
-
-  // Add general frequency
-
-  // Add phonetic transcription
 
   return result;
 }
