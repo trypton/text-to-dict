@@ -247,6 +247,21 @@ async function tagText(text) {
   result.tokens = tokens;
 
   // Add frequency in text
+  const frequency = {};
+  result.tokens.forEach((token) => {
+    const value = token.lemma || token.normal;
+    if (value in frequency) {
+      frequency[value] += 1;
+    } else {
+      frequency[value] = 1;
+    }
+  });
+  result.tokens.forEach((token) => {
+    const value = token.lemma || token.normal;
+    if (frequency[value] > 1) {
+      token.frequency = frequency[value];
+    }
+  });
 
   // Add general frequency
 
