@@ -7,5 +7,5 @@
     "sourceType": "module",
     "ecmaVersion": 2020
   },
-  "ignorePatterns": ["node_modules/"]
+  "ignorePatterns": ["node_modules/", "data/"]
 }
