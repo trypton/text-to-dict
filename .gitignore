@@ -1,5 +1,6 @@
-# source data
-.data
+# data sources
+/.data
+/data
 
 # dependencies
 /node_modules
