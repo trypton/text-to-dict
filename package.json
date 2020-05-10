@@ -2,7 +2,8 @@
   "name": "text-to-dict",
   "version": "1.0.0",
   "description": "Text to dictionary",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "export": "./lib/index.js",
   "type": "module",
   "dependencies": {
     "retext-english": "^3.0.4",
