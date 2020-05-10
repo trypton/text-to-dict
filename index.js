@@ -4,11 +4,20 @@ import unified from 'unified';
 import PosTagger from 'wink-pos-tagger';
 import WordNet from 'wordnet';
 
-// TODO: replace with more efficient solution
-import wordFrequency from './data/word-frequency.js';
+const wordFrequency = {};
+
+const loadData = async function () {
+  if (Object.keys(wordFrequency).length === 0) {
+    try {
+      const wordFrequencyModule = await import('./data/word-frequency.js');
+      Object.assign(wordFrequency, wordFrequencyModule.default);
+    } catch {
+      // Do nothing
+    }
+  }
+};
 
 const wordnet = new WordNet();
-// TODO: use list of english words instead of wordnet
 function isDictionaryWord(word) {
   return new Promise((resolve) => {
     wordnet.lookup(word, function (err, results) {
@@ -277,9 +286,12 @@ async function tagText(text) {
 }
 
 fs.readFile('./the.simpsons.s31e17.srt', 'utf8', async (err, data) => {
+  await loadData();
+
   console.time('parse');
   const result = await tagText(toPlainText(data));
   console.timeEnd('parse');
+
   fs.writeFile('./result.json', JSON.stringify(result, ' ', 2), 'utf8', () => {});
 });
 
