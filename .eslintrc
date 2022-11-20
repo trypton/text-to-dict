@@ -1,11 +1,12 @@
 {
-  "extends": ["plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "env": {
-    "node": true
+    "node": true,
+    "es6": true
   },
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2020
   },
-  "ignorePatterns": ["node_modules/", "data/"]
+  "ignorePatterns": ["data/"]
 }
