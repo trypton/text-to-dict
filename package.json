@@ -1,6 +1,6 @@
 {
-  "name": "text-to-words",
-  "version": "1.0.0",
+  "name": "@trypton/text-to-words",
+  "version": "1.0.1",
   "description": "Parses text and returns an array with tokens for further analysis",
   "main": "./lib/index.js",
   "export": "./lib/index.js",
@@ -28,7 +28,7 @@
     "lib",
     ".npmrc"
   ],
-  "repository": "git://github.com/trypton/wordnet",
+  "repository": "git://github.com/trypton/text-to-words",
   "author": "Karen Ananiev",
   "license": "MIT"
 }
