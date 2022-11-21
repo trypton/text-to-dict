@@ -1,7 +1,7 @@
 {
   "name": "text-to-dict",
   "version": "1.0.0",
-  "description": "Text to dictionary",
+  "description": "Parses text and returns an array with tokens for further analysis",
   "main": "./lib/index.js",
   "export": "./lib/index.js",
   "type": "module",
